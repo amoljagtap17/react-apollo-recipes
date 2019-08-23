@@ -2,11 +2,21 @@ const express = require('express')
 const mongoose = require('mongoose')
 require('dotenv').config({ path: 'dev.env' })
 
+const Recipe = require('./models/Recipe')
+const User = require('./models/User')
+
+// Connect to database
 mongoose
   .connect(process.env.MONGO_URI, { useNewUrlParser: true })
   .then(() => console.log('DB connected!'))
   .catch(err => console.error(err))
 
+// To avoid warning
+// DeprecationWarning: collection.ensureIndex is deprecated.
+// Use createIndexes instead.
+mongoose.set('useCreateIndex', true)
+
+// Initialize Express application
 const app = express()
 
 const PORT = process.env.PORT || 4444
