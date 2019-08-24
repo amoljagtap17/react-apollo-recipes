@@ -1,1 +1,1 @@
-export { default as withSignupMutation } from './withSignupMutation'
+export { default as withMutation } from './withMutation'

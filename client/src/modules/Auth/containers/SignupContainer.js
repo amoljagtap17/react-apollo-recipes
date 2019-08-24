@@ -1,4 +1,5 @@
-import { withSignupMutation } from '../providers'
+import { withMutation } from '../providers'
+import { SIGNUP_USER } from '../providers/graphql/signup.mutation'
 import SignupFormikForm from './SignupFormikForm'
 
-export default withSignupMutation(SignupFormikForm)
+export default withMutation(SignupFormikForm, SIGNUP_USER)

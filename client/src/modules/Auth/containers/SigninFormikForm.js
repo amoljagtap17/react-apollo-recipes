@@ -1,30 +1,28 @@
 import React from 'react'
 import { Formik } from 'formik'
-import { SignupValidations } from './SignupValidations'
-import SignupForm from '../components/SignupForm'
+import { SigninValidations } from './SigninValidations'
+import SigninForm from '../components/SigninForm'
 import Error from '../../../core/Error'
 
 const initialValues = {
   username: '',
-  email: '',
-  password: '',
-  passwordConfirmation: ''
+  password: ''
 }
 
-const SignupFormikForm = ({ mutationFunc, loading, error }) => (
+const SigninFormikForm = ({ mutationFunc, loading, error }) => (
   <>
     <Formik
       initialValues={initialValues}
-      validationSchema={SignupValidations}
+      validationSchema={SigninValidations}
+      enableReinitialize={true}
       onSubmit={(values, actions) => {
         mutationFunc({
           variables: {
             username: values.username,
-            email: values.email,
             password: values.password
           }
         })
-          .then(data => console.log('Signup', data))
+          .then(data => console.log('Signin', data))
           .catch(() => {})
 
         if (!loading || error !== undefined) {
@@ -32,10 +30,10 @@ const SignupFormikForm = ({ mutationFunc, loading, error }) => (
           actions.resetForm(initialValues)
         }
       }}
-      component={SignupForm}
+      component={SigninForm}
     />
     {error && <Error error={error} />}
   </>
 )
 
-export default SignupFormikForm
+export default SigninFormikForm
