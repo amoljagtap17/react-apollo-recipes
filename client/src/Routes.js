@@ -5,6 +5,7 @@ import {
   Switch,
   Redirect
 } from 'react-router-dom'
+import { SigninContainer, SignupContainer } from './modules/Auth'
 
 import App from './App'
 
@@ -12,8 +13,8 @@ const Routes = () => (
   <Router>
     <Switch>
       <Route path="/" exact component={App} />
-      {/* <Route path="/signin" component={Signin} />
-      <Route path="/signup" component={Signup} /> */}
+      <Route path="/signin" component={SigninContainer} />
+      <Route path="/signup" component={SignupContainer} />
       <Redirect to="/" />
     </Switch>
   </Router>
