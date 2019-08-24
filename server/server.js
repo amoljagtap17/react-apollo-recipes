@@ -33,7 +33,10 @@ const apolloServer = new ApolloServer({
 // #6 Initialize an Express application
 const app = express()
 
-const whitelist = ['http://localhost:3000']
+app.disable('x-powered-by')
+app.set('etag', false)
+
+const whitelist = ['http://localhost:3000', 'http://localhost:4444']
 
 const corsOptions = {
   origin: function(origin, callback) {
