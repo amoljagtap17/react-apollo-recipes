@@ -36,7 +36,7 @@ const app = express()
 app.disable('x-powered-by')
 app.set('etag', false)
 
-const whitelist = ['http://localhost:3000', 'http://localhost:4444']
+/* const whitelist = ['http://localhost:3000']
 
 const corsOptions = {
   origin: function(origin, callback) {
@@ -47,13 +47,13 @@ const corsOptions = {
     }
   },
   credentials: true
-}
+} */
 
 // #7 Use the Express application as middleware in Apollo server
 apolloServer.applyMiddleware({
   app,
-  path: '/api',
-  cors: corsOptions
+  path: '/api'
+  // cors: corsOptions
 })
 
 // #8 Set the port that the Express application will listen to
