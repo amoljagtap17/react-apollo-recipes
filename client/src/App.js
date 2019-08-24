@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Row, Col } from 'reactstrap'
 import RecipeList from './modules/Recipe/containers'
-import SignupFormikForm from './modules/Auth/containers/SignupFormikForm'
+import SignupContainer from './modules/Auth/containers/SignupContainer'
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
       </Row>
       <Row>
         <Col>
-          <SignupFormikForm />
+          <SignupContainer />
         </Col>
       </Row>
     </Container>

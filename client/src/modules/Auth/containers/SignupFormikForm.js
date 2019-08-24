@@ -11,17 +11,30 @@ const SignupSchema = Yup.object().shape({
 })
 
 const initialValues = {
-  email: ''
+  username: '',
+  email: '',
+  password: '',
+  passwordConfirmation: ''
 }
 
-const SignupFormikForm = () => (
+const SignupFormikForm = ({ signupUser, loading, error }) => (
   <Formik
     initialValues={initialValues}
     validationSchema={SignupSchema}
     onSubmit={(values, actions) => {
-      console.log('values', values, actions)
-      actions.setSubmitting(false)
-      actions.resetForm(initialValues)
+      console.log('values', values)
+      signupUser({
+        variables: {
+          username: values.username,
+          email: values.email,
+          password: values.password
+        }
+      }).then(data => console.log('dd', data))
+
+      if (!loading || error !== undefined) {
+        actions.setSubmitting(false)
+        actions.resetForm(initialValues)
+      }
     }}
     component={SignupForm}
   />
