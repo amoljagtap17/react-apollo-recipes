@@ -33,10 +33,24 @@ const apolloServer = new ApolloServer({
 // #6 Initialize an Express application
 const app = express()
 
+const whitelist = ['http://localhost:3000']
+
+const corsOptions = {
+  origin: function(origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
+  credentials: true
+}
+
 // #7 Use the Express application as middleware in Apollo server
 apolloServer.applyMiddleware({
   app,
-  path: '/api'
+  path: '/api',
+  cors: corsOptions
 })
 
 // #8 Set the port that the Express application will listen to
