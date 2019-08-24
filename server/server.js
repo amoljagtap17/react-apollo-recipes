@@ -1,5 +1,7 @@
 const path = require('path')
 
+const dbModels = require('./models')
+
 // #1 Import Express and Apollo Server
 const express = require('express')
 const { ApolloServer } = require('apollo-server-express')
@@ -17,13 +19,25 @@ const { typeDefs } = require('./schema')
 const { resolvers } = require('./resolvers')
 
 // #5 Initialize an Apollo server
-const apolloServer = new ApolloServer({ typeDefs, resolvers })
+const apolloServer = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: ({ req, res }) => dbModels,
+  playground: {
+    settings: {
+      'editor.theme': 'light'
+    }
+  }
+})
 
 // #6 Initialize an Express application
 const app = express()
 
 // #7 Use the Express application as middleware in Apollo server
-apolloServer.applyMiddleware({ app, path: '/api' })
+apolloServer.applyMiddleware({
+  app,
+  path: '/api'
+})
 
 // #8 Set the port that the Express application will listen to
 const PORT = process.env.PORT || 4444

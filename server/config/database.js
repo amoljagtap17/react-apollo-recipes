@@ -7,6 +7,11 @@ const DB_URI = process.env.MONGO_URI
 // #3 Connect to MongoDB
 mongoose.connect(DB_URI, { useNewUrlParser: true })
 
+// To avoid warning
+// DeprecationWarning: collection.ensureIndex is deprecated.
+// Use createIndexes instead.
+mongoose.set('useCreateIndex', true)
+
 // #4 Add basic event listeners on the mongoose.connection object
 mongoose.connection.once('open', () =>
   console.log('Connected to a MongoDB instance')
