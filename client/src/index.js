@@ -6,12 +6,13 @@ import apolloClient from './config/createApolloClient'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import App from './App'
+import Routes from './Routes'
+
 import * as serviceWorker from './serviceWorker'
 
 ReactDOM.render(
   <ApolloProvider client={apolloClient}>
-    <App />
+    <Routes />
   </ApolloProvider>,
   document.getElementById('root')
 )

@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Row, Col } from 'reactstrap'
 import RecipeList from './modules/Recipe/containers'
+import SignupFormikForm from './modules/Auth/containers/SignupFormikForm'
 
 function App() {
   return (
@@ -13,6 +14,11 @@ function App() {
       <Row>
         <Col>
           <RecipeList />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <SignupFormikForm />
         </Col>
       </Row>
     </Container>
