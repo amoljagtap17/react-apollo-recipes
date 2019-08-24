@@ -36,6 +36,14 @@ const app = express()
 app.disable('x-powered-by')
 app.set('etag', false)
 
+// set up JWT authentication middleware
+app.use(async (req, res, next) => {
+  const token = req.headers['authorization']
+  console.log('server : ', token)
+
+  next()
+})
+
 /* const whitelist = ['http://localhost:3000']
 
 const corsOptions = {
