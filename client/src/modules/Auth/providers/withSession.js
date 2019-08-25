@@ -7,7 +7,7 @@ const withSession = Component => props => {
 
   if (loading) return <p>loading..withSession.</p>
 
-  console.log('data -- ', data)
+  // console.log('data -- ', data)
 
   return <Component {...props} refetch={refetch} session={data} />
 }

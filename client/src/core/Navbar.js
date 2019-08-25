@@ -7,9 +7,10 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  Button
+  NavLink
 } from 'reactstrap'
+
+import { Signout } from '../modules/Auth'
 
 const NavbarComponent = ({ location, session }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -63,9 +64,7 @@ const NavbarAuth = ({ pathname }) => (
       </NavLink>
     </NavItem>
     <NavItem>
-      <Button outline color="primary">
-        Signout
-      </Button>
+      <Signout />
     </NavItem>
   </Fragment>
 )
