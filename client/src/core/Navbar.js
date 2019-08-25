@@ -7,10 +7,11 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink
+  NavLink,
+  Button
 } from 'reactstrap'
 
-const NavbarComponent = ({ location }) => {
+const NavbarComponent = ({ location, session }) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const toggle = () => setIsOpen(prevIsOpen => !prevIsOpen)
@@ -23,12 +24,51 @@ const NavbarComponent = ({ location }) => {
       <NavbarToggler onClick={toggle} />
       <Collapse isOpen={isOpen} navbar>
         <Nav className="ml-auto" navbar>
-          <NavbarUnAuth pathname={location.pathname} />
+          {session && session.getCurrentUser ? (
+            <NavbarAuth pathname={location.pathname} />
+          ) : (
+            <NavbarUnAuth pathname={location.pathname} />
+          )}
         </Nav>
+        {session && session.getCurrentUser && (
+          <h4 className="ml-auto text-dark">
+            Welcome, <strong>{session.getCurrentUser.username}</strong>
+          </h4>
+        )}
       </Collapse>
     </Navbar>
   )
 }
+
+const NavbarAuth = ({ pathname }) => (
+  <Fragment>
+    <NavItem>
+      <NavLink tag={Link} to="/" active={pathname === '/'}>
+        Home
+      </NavLink>
+    </NavItem>
+    <NavItem>
+      <NavLink tag={Link} to="/search" active={pathname === '/search'}>
+        Search
+      </NavLink>
+    </NavItem>
+    <NavItem>
+      <NavLink tag={Link} to="/recipe/add" active={pathname === '/recipe/add'}>
+        Add Recipe
+      </NavLink>
+    </NavItem>
+    <NavItem>
+      <NavLink tag={Link} to="/profile" active={pathname === '/profile'}>
+        Profile
+      </NavLink>
+    </NavItem>
+    <NavItem>
+      <Button outline color="primary">
+        Signout
+      </Button>
+    </NavItem>
+  </Fragment>
+)
 
 const NavbarUnAuth = ({ pathname }) => (
   <Fragment>

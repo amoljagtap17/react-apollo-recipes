@@ -16,3 +16,15 @@ li,
 .active {
   font-weight: bold;
 }
+
+.navbar-expand-md .navbar-collapse {
+  flex-direction: column;
+}
+
+@media (max-width: 806px) {
+  p,
+  li,
+  .navbar-brand {
+    font-size: 1.8rem !important;
+  }
+}

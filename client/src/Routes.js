@@ -7,19 +7,22 @@ import {
 } from 'react-router-dom'
 
 import { SigninContainer, SignupContainer } from './modules/Auth'
-import { Search } from './modules/Recipe'
+import { Search, AddRecipe } from './modules/Recipe'
+import { Profile } from './modules/Profile'
 
 import App from './App'
 import Navbar from './core/Navbar'
 import withSession from './modules/Auth/providers/withSession'
 
-const Routes = ({ refetch }) => (
+const Routes = ({ refetch, session }) => (
   <Router>
     <Fragment>
-      <Navbar />
+      <Navbar session={session} />
       <Switch>
         <Route path="/" exact component={App} />
-        <Route path="/search" exact component={Search} />
+        <Route path="/search" component={Search} />
+        <Route path="/profile" component={Profile} />
+        <Route path="/recipe/add" component={AddRecipe} />
         {/* <Route path="/signin" component={SigninContainer} />
       <Route path="/signup" component={SignupContainer} /> */}
         <Route
