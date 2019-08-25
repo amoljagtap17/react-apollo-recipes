@@ -1,4 +1,5 @@
 const path = require('path')
+const jwt = require('jsonwebtoken')
 
 const dbModels = require('./models')
 
@@ -39,7 +40,16 @@ app.set('etag', false)
 // set up JWT authentication middleware
 app.use(async (req, res, next) => {
   const token = req.headers['authorization']
-  console.log('server : ', token)
+
+  if (token !== 'null') {
+    try {
+      const currentUser = await jwt.verify(token, process.env.SECRET)
+
+      console.log('currentUser : ', currentUser)
+    } catch (err) {
+      console.error(err)
+    }
+  }
 
   next()
 })
