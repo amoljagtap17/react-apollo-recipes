@@ -5,6 +5,7 @@ import { ApolloProvider } from '@apollo/react-hooks'
 import apolloClient from './config/createApolloClient'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
+import './index.css'
 
 import Routes from './Routes'
 
