@@ -8,6 +8,7 @@ import {
 import { SigninContainer, SignupContainer } from './modules/Auth'
 
 import App from './App'
+import withSession from './modules/Auth/providers/withSession'
 
 const Routes = () => (
   <Router>
@@ -20,4 +21,6 @@ const Routes = () => (
   </Router>
 )
 
-export default Routes
+const RoutesWithSession = withSession(Routes)
+
+export default RoutesWithSession

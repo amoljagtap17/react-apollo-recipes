@@ -23,7 +23,14 @@ const { resolvers } = require('./resolvers')
 const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ({ req, res }) => dbModels,
+  context: ({ req, res }) => {
+    // console.log('aa', req.currentUser)
+
+    return {
+      ...dbModels,
+      currentUser: req.currentUser
+    }
+  },
   playground: {
     settings: {
       'editor.theme': 'light'
@@ -41,11 +48,11 @@ app.set('etag', false)
 app.use(async (req, res, next) => {
   const token = req.headers['authorization']
 
-  if (token !== 'null') {
+  if (token !== 'null' && token !== null && token !== undefined) {
     try {
       const currentUser = await jwt.verify(token, process.env.SECRET)
 
-      console.log('currentUser : ', currentUser)
+      req.currentUser = currentUser
     } catch (err) {
       console.error(err)
     }

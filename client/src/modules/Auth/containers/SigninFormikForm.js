@@ -31,7 +31,7 @@ const SigninFormikForm = ({ mutationFunc, loading, error }) => (
               }
             })
               .then(({ data: { signinUser } }) => {
-                console.log('Signin', signinUser)
+                // console.log('Signin', signinUser)
                 localStorage.setItem('token', signinUser.token)
               })
               .catch(() => {})

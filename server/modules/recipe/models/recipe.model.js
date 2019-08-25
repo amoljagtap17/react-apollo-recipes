@@ -30,6 +30,6 @@ const RecipeSchema = new Schema({
   }
 })
 
-const Recipe = model('recipe', RecipeSchema)
+const Recipe = model('Recipe', RecipeSchema)
 
 module.exports = Recipe
