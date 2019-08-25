@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import { Formik } from 'formik'
 import { Container, Row, Col } from 'reactstrap'
 import { SigninValidations } from './SigninValidations'
@@ -10,7 +11,13 @@ const initialValues = {
   password: ''
 }
 
-const SigninFormikForm = ({ mutationFunc, loading, error }) => (
+const SigninFormikForm = ({
+  mutationFunc,
+  loading,
+  error,
+  history,
+  refetch
+}) => (
   <Container>
     <Row>
       <Col>
@@ -30,9 +37,11 @@ const SigninFormikForm = ({ mutationFunc, loading, error }) => (
                 password: values.password
               }
             })
-              .then(({ data: { signinUser } }) => {
+              .then(async ({ data: { signinUser } }) => {
                 // console.log('Signin', signinUser)
                 localStorage.setItem('token', signinUser.token)
+                await refetch()
+                history.push('/')
               })
               .catch(() => {})
 
@@ -55,4 +64,4 @@ const SigninFormikForm = ({ mutationFunc, loading, error }) => (
   </Container>
 )
 
-export default SigninFormikForm
+export default withRouter(SigninFormikForm)

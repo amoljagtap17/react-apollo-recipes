@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import { Formik } from 'formik'
 import { Container, Row, Col } from 'reactstrap'
 import { SignupValidations } from './SignupValidations'
@@ -12,7 +13,13 @@ const initialValues = {
   passwordConfirmation: ''
 }
 
-const SignupFormikForm = ({ mutationFunc, loading, error }) => (
+const SignupFormikForm = ({
+  mutationFunc,
+  loading,
+  error,
+  history,
+  refetch
+}) => (
   <Container>
     <Row>
       <Col>
@@ -32,9 +39,11 @@ const SignupFormikForm = ({ mutationFunc, loading, error }) => (
                 password: values.password
               }
             })
-              .then(({ data: { signupUser } }) => {
+              .then(async ({ data: { signupUser } }) => {
                 console.log('Signup', signupUser)
                 localStorage.setItem('token', signupUser.token)
+                await refetch()
+                history.push('/')
               })
               .catch(() => {})
 
@@ -57,4 +66,4 @@ const SignupFormikForm = ({ mutationFunc, loading, error }) => (
   </Container>
 )
 
-export default SignupFormikForm
+export default withRouter(SignupFormikForm)
