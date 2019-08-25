@@ -1,6 +1,6 @@
 import { gql } from 'apollo-boost'
 
-export const GET_CURRENT_USER = gql`
+const GET_CURRENT_USER = gql`
   query {
     getCurrentUser {
       username
@@ -9,3 +9,5 @@ export const GET_CURRENT_USER = gql`
     }
   }
 `
+
+export default GET_CURRENT_USER

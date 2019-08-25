@@ -1,6 +1,6 @@
 import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
-import { GET_CURRENT_USER } from './graphql/currentuser.query'
+import { GET_CURRENT_USER } from '../modules/Auth'
 
 const withSession = Component => props => {
   const { loading, data, refetch } = useQuery(GET_CURRENT_USER)

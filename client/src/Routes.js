@@ -12,7 +12,7 @@ import { Profile } from './modules/Profile'
 
 import App from './App'
 import Navbar from './core/Navbar'
-import withSession from './modules/Auth/providers/withSession'
+import { withSession } from './hoc'
 
 const Routes = ({ refetch, session }) => (
   <Router>

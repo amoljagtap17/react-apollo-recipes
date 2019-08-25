@@ -2,10 +2,10 @@ import React from 'react'
 
 const RecipeItem = ({ _id, name, category }) => (
   <li>
-    <h4>{name}</h4>
-    <p>
+    <p>{name}</p>
+    <h4>
       <strong>{category}</strong>
-    </p>
+    </h4>
   </li>
 )
 
