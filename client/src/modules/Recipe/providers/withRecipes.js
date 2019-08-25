@@ -1,6 +1,6 @@
 import React from 'react'
 import { useQuery } from '@apollo/react-hooks'
-import { GET_ALL_RECIPES } from './recipes.queries'
+import { GET_ALL_RECIPES } from './graphql/recipes.query'
 
 const withRecipes = Component => props => {
   const { loading, error, data } = useQuery(GET_ALL_RECIPES)

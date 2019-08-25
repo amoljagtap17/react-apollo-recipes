@@ -21,6 +21,10 @@ li,
   flex-direction: column;
 }
 
+ul {
+  list-style: none;
+}
+
 @media (max-width: 806px) {
   p,
   li,
