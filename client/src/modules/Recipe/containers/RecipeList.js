@@ -1,18 +1,21 @@
 import React, { Fragment } from 'react'
-import { withRecipes } from '../providers'
+import { withQuery } from '../../../hoc'
+import GET_ALL_RECIPES from '../providers/graphql/recipes.query'
 import RecipeItem from '../components/RecipeItem'
 
-const RecipeList = ({ loading, error, recipes }) => {
+const RecipeList = ({ loading, error, data }) => {
   return (
     <Fragment>
       <h1 className="text-center">Recipe List..</h1>
       <ul>
-        {recipes.map(recipe => (
-          <RecipeItem {...recipe} key={recipe._id} />
-        ))}
+        {data &&
+          data.getAllRecipes &&
+          data.getAllRecipes.map(recipe => (
+            <RecipeItem {...recipe} key={recipe._id} />
+          ))}
       </ul>
     </Fragment>
   )
 }
 
-export default withRecipes(RecipeList)
+export default withQuery(RecipeList, GET_ALL_RECIPES)

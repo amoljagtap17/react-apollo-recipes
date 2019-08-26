@@ -8,4 +8,4 @@ const SIGNIN_USER = gql`
   }
 `
 
-export default SIGNIN_USER
+export { SIGNIN_USER }

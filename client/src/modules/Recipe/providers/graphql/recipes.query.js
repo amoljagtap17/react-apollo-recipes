@@ -1,6 +1,6 @@
 import { gql } from 'apollo-boost'
 
-export const GET_ALL_RECIPES = gql`
+const GET_ALL_RECIPES = gql`
   query {
     getAllRecipes {
       _id
@@ -9,3 +9,5 @@ export const GET_ALL_RECIPES = gql`
     }
   }
 `
+
+export default GET_ALL_RECIPES

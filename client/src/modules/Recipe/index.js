@@ -1,3 +1,5 @@
-export { default as Search } from './components/Search'
-export { default as AddRecipe } from './components/AddRecipe'
-export { default as RecipeList } from './containers/RecipeList'
+import Search from './components/Search'
+import AddRecipe from './components/AddRecipe'
+import RecipeList from './containers/RecipeList'
+
+export { RecipeList, AddRecipe, Search }
